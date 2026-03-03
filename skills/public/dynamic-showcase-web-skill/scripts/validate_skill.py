@@ -35,7 +35,7 @@ def ensure_required_files(root: Path) -> None:
 
 
 def smoke_test_scripts(root: Path) -> None:
-    with tempfile.TemporaryDirectory(prefix="dynamic-showcase-skill-") as temp_dir:
+    with tempfile.TemporaryDirectory(prefix="liveppt-skill-") as temp_dir:
         temp_path = Path(temp_dir)
         plan_output = temp_path / "plan.md"
         theme_output = temp_path / "theme.css"
