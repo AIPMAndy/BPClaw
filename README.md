@@ -96,7 +96,8 @@ LivePPT/
 
 MIT + Additional Terms（附加条款）
 
-See: `skills/public/LivePPT/LICENSE`
+- 中文条款: `skills/public/LivePPT/LICENSE`
+- English terms: `skills/public/LivePPT/LICENSE_EN.md`
 
 ---
 
