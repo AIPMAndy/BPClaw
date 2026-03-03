@@ -1,4 +1,4 @@
-# LivePPT Skill
+# LivePPT
 
 Build cinematic click-through web showcases as a premium alternative to static slides.
 
