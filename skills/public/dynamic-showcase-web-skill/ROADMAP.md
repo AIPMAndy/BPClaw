@@ -21,7 +21,7 @@
 
 ## v0.2.0
 
-- Add starter React/Vite showcase template in `assets/templates/starter`.
+- Expand starter React/Vite showcase template in `assets/templates/starter` (preview delivered in v0.1.x).
 - Add scene animation presets with reduced-motion fallback.
 - Add quality gates for Lighthouse and responsive breakpoints.
 
