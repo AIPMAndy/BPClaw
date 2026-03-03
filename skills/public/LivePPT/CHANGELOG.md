@@ -9,6 +9,7 @@ All notable changes to `LivePPT` are documented in this file.
 - 新增 `assets/templates/starter/App.tsx` 与 `styles.css`，提供可点击分镜 starter。
 - 新增 `assets/templates/starter/DIFFERENTIATION.md`，明确 anti-clone 约束。
 - 新增 starter 使用说明：`assets/templates/starter/README.md`。
+- 新增英文许可证：`LICENSE_EN.md`。
 
 ### Changed
 
