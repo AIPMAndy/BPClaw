@@ -1,6 +1,6 @@
 # Contributing
 
-感谢你为 `liveppt-skill` 做贡献。
+感谢你为 `LivePPT` 做贡献。
 
 ## 1. Before You Start
 
