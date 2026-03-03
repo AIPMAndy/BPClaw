@@ -1,4 +1,4 @@
-# Dynamic Showcase Web Skill
+# LivePPT Skill
 
 Build cinematic click-through web showcases as a premium alternative to static slides.
 
@@ -13,7 +13,8 @@ Build cinematic click-through web showcases as a premium alternative to static s
 - `v0.1.x` 工作流、文档和脚本已可稳定使用。
 - 本地校验（`make validate`）和 CI 校验（GitHub Actions）已接通。
 - 已具备开源发布基础文档与发布节奏模板。
-- `v0.2.0` 规划项（starter 模板、Lighthouse 自动门禁）尚未落地。
+- starter 模板已提供预览版（见 `assets/templates/starter`）。
+- `v0.2.0` 中 Lighthouse 自动门禁仍待落地。
 
 ## Core Features
 
@@ -21,6 +22,7 @@ Build cinematic click-through web showcases as a premium alternative to static s
 - Runtime theme generation with token output (`scripts/add_theme.py`).
 - One-command local validation (`make validate`).
 - Release note scaffolding (`scripts/generate_release_note.py`).
+- Distinct style starter (`assets/templates/starter`).
 
 ## Repository Structure
 
@@ -47,7 +49,12 @@ dynamic-showcase-web-skill/
 ├── assets/
 │   └── templates/
 │       ├── scene-map.md
-│       └── theme-spec.md
+│       ├── theme-spec.md
+│       └── starter/
+│           ├── App.tsx
+│           ├── styles.css
+│           ├── DIFFERENTIATION.md
+│           └── README.md
 ├── examples/
 │   └── use-cases.md
 └── releases/
