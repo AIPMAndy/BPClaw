@@ -1,131 +1,106 @@
-<div align="center">
+# BPClaw
 
-# 🚀 LivePPT
+深度调研驱动的融资 BP 文档 Agent 体系。  
+把“写 BP”从一次性文档任务升级为“可复用流程 + 评分闭环 + 多格式产出”。
 
-**把传统 PPT 升级为可点击切换的动态网页演示**  
-**Turn static slides into cinematic, clickable web showcases**
+## 为什么需要 BPClaw
 
-[![Stars](https://img.shields.io/github/stars/AIPMAndy/LivePPT?style=social)](https://github.com/AIPMAndy/LivePPT/stargazers)
-[![Forks](https://img.shields.io/github/forks/AIPMAndy/LivePPT?style=social)](https://github.com/AIPMAndy/LivePPT/network/members)
-[![Last Commit](https://img.shields.io/github/last-commit/AIPMAndy/LivePPT)](https://github.com/AIPMAndy/LivePPT/commits/main)
-[![License](https://img.shields.io/badge/license-MIT%2BTerms-blue.svg)](./skills/public/LivePPT/LICENSE)
+| 能力 | 传统 BP 写作 | BPClaw |
+| --- | :---: | :---: |
+| 调研证据链 | 片段化 | 系统化（宏观/微观 + 来源日志） |
+| 结构完整度 | 依赖个人经验 | 固定流程（6 大章节 + 评分标准） |
+| 可执行性 | 叙事多、落地弱 | 强制里程碑、owner、止损条件 |
+| 二次复用 | 难以沉淀 | 脚本化模板，可持续迭代 |
 
-**简体中文** | [English](#english)
-
-</div>
-
----
-
-> ⭐ 如果你也想做“高级感网页演示”，欢迎点个 Star 支持持续更新。
-
-## 🎯 LivePPT 能帮你什么？
-
-| 常见痛点 | LivePPT 解决方式 |
-|---|---|
-| PPT 只能线性播放，缺少互动感 | 场景化网页演示，支持点击、键盘、目录跳转 |
-| 同一内容很难快速换风格 | 用主题令牌切换视觉，不改文案和结构 |
-| 从想法到 Demo 周期太长 | 内置 7/14 天执行计划生成脚本 |
-| 开源协作容易流程混乱 | `make validate` + CI + 发布模板统一节奏 |
-
-## ✨ 核心能力
-
-- **动态叙事工作流**：封面 → 痛点 → 方案 → 证据 → 架构 → CTA。
-- **多风格主题系统**：`neo-luxury`、`cyber-pulse`、`minimal-editorial` 等。
-- **自动化交付脚本**：计划生成、主题生成、发布说明生成。
-- **开源协作标准化**：Contributing、Roadmap、Changelog、Launch Checklist。
-
-## ⚡ 60 秒快速开始
+## 30 秒快速开始
 
 ```bash
-cd skills/public/LivePPT
+# 1) 初始化 BP 工作区
+python3 skills/public/bpclaw/scripts/init_bp_project.py "textile-financing-bp" --out .
 
-# 1) 校验结构与脚本
-make validate
+# 2) 在 outputs/2_bp_draft.md 填入内容后评分
+python3 skills/public/bpclaw/scripts/score_bp.py \
+  --input textile-financing-bp/outputs/2_bp_draft.md \
+  --output textile-financing-bp/outputs/4_bp_review_scorecard.md
 
-# 2) 生成 7 天执行计划
-python3 scripts/generate_showcase_plan.py \
-  --project "AI 产品发布网页演示" \
-  --audience "技术决策者" \
-  --mode 7 \
-  --style "neo-luxury" \
-  --output plans/7-day-plan.md
+# 3) 从 BP 草案自动生成 LivePPT 场景图
+python3 skills/public/bpclaw/scripts/generate_liveppt_scene_map.py \
+  --input textile-financing-bp/outputs/2_bp_draft.md \
+  --output textile-financing-bp/outputs/3_liveppt_scene_map.md
 
-# 3) 生成一个新主题
-python3 scripts/add_theme.py \
-  --name "midnight-luxe" \
-  --bg "#09090b" \
-  --surface "#15151a" \
-  --text "#f4f4f5" \
-  --accent "#d4af37" \
-  --motion "cubic-bezier(0.22, 1, 0.36, 1)" \
-  --output themes/midnight-luxe.css
+# 4) 可选：导出 DOCX（需要本机安装 pandoc）
+python3 skills/public/bpclaw/scripts/export_doc.py \
+  --input textile-financing-bp/outputs/2_bp_draft.md \
+  --output textile-financing-bp/outputs/2_bp_draft.docx
 ```
 
-## 📁 仓库结构
+## 核心命令
+
+```bash
+python3 skills/public/bpclaw/scripts/init_bp_project.py "<project-name>" --out .
+python3 skills/public/bpclaw/scripts/score_bp.py --input <bp.md> --output <scorecard.md>
+python3 skills/public/bpclaw/scripts/generate_liveppt_scene_map.py --input <bp.md> --output <scene-map.md>
+python3 skills/public/bpclaw/scripts/export_doc.py --input <bp.md> --output <bp.docx>
+```
+
+## 工作流
+
+1. 输入背景与融资目标。
+2. 宏观/微观深调研并记录证据链。
+3. 第一性原理拆解（Musk Drill）。
+4. 输出 BP 草案并自动评分。
+5. 导出 DOCX 与 LivePPT 场景图。
+6. 复盘沉淀为下一轮自动化能力。
+
+## 项目结构
 
 ```text
-LivePPT/
+skills/public/bpclaw/
 ├── README.md
-└── skills/public/LivePPT/
-    ├── SKILL.md
-    ├── README.md
-    ├── CHANGELOG.md
-    ├── ROADMAP.md
-    ├── OPEN_SOURCE_LAUNCH_CHECKLIST.md
-    ├── scripts/
-    ├── references/
-    ├── assets/templates/
-    └── releases/
+├── SKILL.md
+├── agents/openai.yaml
+├── scripts/
+│   ├── init_bp_project.py
+│   ├── score_bp.py
+│   ├── export_doc.py
+│   └── generate_liveppt_scene_map.py
+├── references/
+│   ├── evaluation-rubric.md
+│   └── research-depth-checklist.md
+└── assets/templates/
+    ├── background-goal-template.md
+    ├── source-log-template.md
+    ├── bp-draft-template.md
+    └── liveppt-scene-map-template.md
 ```
 
-## 🗺️ Roadmap
+## 核心产物
 
-- [x] `v0.1.x`：技能工作流、脚本工具链、校验体系、发布文档。
-- [ ] `v0.2.0`：Starter 前端模板、动效预设、Lighthouse 质量门禁。
-- [ ] `v0.3.0`：社区主题生态、示例库与贡献者扩展。
+- `inputs/0_background_and_goal.md`
+- `research/1_source_log.md`
+- `outputs/2_bp_draft.md`
+- `outputs/3_liveppt_scene_map.md`
+- `outputs/4_bp_review_scorecard.md`
+- `outputs/5_reflection.md`
 
-## 🤝 贡献方式
+## Roadmap
 
-- 提交新主题预设（颜色 / 字体 / 动效）。
-- 提交新场景模板（路演 / 课程 / 发布会）。
-- 提交脚本增强（自动校验、发布、文档生成）。
+- [x] v0.1.x：完成 BP 工作流与评分脚本首版。
+- [x] v0.2.x：补齐开源发布文档与 CI smoke 校验。
+- [ ] v0.3.x：加入行业模板包（制造业/消费品/企业服务）。
+- [ ] v0.4.x：加入指标抽取与自动证据完整性检查。
 
-查看：`skills/public/LivePPT/CONTRIBUTING.md`
+## 贡献
 
-## 📄 License
+- Bug / 建议：提 [Issue](https://github.com/AIPMAndy/LivePPT/issues)
+- 贡献代码：Fork -> Branch -> PR
+- 详细规则见 [CONTRIBUTING.md](CONTRIBUTING.md)
 
-MIT + Additional Terms（附加条款）
+## License
 
-- 中文条款: `skills/public/LivePPT/LICENSE`
-- English terms: `skills/public/LivePPT/LICENSE_EN.md`
+[Apache-2.0](LICENSE) + ADDITIONAL TERMS / 附加条款。
 
----
+## 作者
 
-## English
-
-> Build premium, click-through web presentations instead of static slides.
-
-### What LivePPT Does
-
-- Converts linear slide requests into interactive scene-based web showcases.
-- Supports runtime style switching via theme tokens.
-- Provides 7/14-day execution plan generation for fast shipping.
-- Includes validation + release scaffolding for open-source collaboration.
-
-### Quick Start
-
-```bash
-cd skills/public/LivePPT
-make validate
-```
-
-### Key Documents
-
-- Skill spec: `skills/public/LivePPT/SKILL.md`
-- Guide: `skills/public/LivePPT/README.md`
-- Changelog: `skills/public/LivePPT/CHANGELOG.md`
-- Launch checklist: `skills/public/LivePPT/OPEN_SOURCE_LAUNCH_CHECKLIST.md`
-
-### Call for Contributors
-
-If you are building high-end interactive demos for product launch, sales, education, or storytelling, feel free to open an Issue/PR and co-build LivePPT.
+AI酋长Andy  
+商业授权联系：微信 `AIPMAndy`

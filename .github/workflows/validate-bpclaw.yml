@@ -1,0 +1,41 @@
+name: Validate BPClaw
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check templates exist
+        run: |
+          test -f skills/public/bpclaw/assets/templates/background-goal-template.md
+          test -f skills/public/bpclaw/assets/templates/source-log-template.md
+          test -f skills/public/bpclaw/assets/templates/bp-draft-template.md
+          test -f skills/public/bpclaw/assets/templates/liveppt-scene-map-template.md
+
+      - name: Python syntax check
+        run: |
+          PYTHONPYCACHEPREFIX=/tmp/pycache python3 -m py_compile skills/public/bpclaw/scripts/*.py
+
+      - name: Smoke test scripts
+        run: |
+          python3 skills/public/bpclaw/scripts/init_bp_project.py "ci-smoke-bp" --out /tmp --force
+          python3 skills/public/bpclaw/scripts/score_bp.py \
+            --input /tmp/ci-smoke-bp/outputs/2_bp_draft.md \
+            --output /tmp/ci-smoke-bp/outputs/4_bp_review_scorecard.md
+          python3 skills/public/bpclaw/scripts/generate_liveppt_scene_map.py \
+            --input /tmp/ci-smoke-bp/outputs/2_bp_draft.md \
+            --output /tmp/ci-smoke-bp/outputs/3_liveppt_scene_map.md

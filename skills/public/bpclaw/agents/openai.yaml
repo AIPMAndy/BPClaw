@@ -1,0 +1,4 @@
+interface:
+  display_name: "BPClaw"
+  short_description: "用深度行业调研与第一性原理，快速产出融资级BP文档草案"
+  default_prompt: "请基于我的背景和目标，按BPClaw流程完成深度调研、评估打分并输出可融资BP文档草案。"

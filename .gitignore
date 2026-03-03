@@ -1,0 +1,11 @@
+node_modules
+dist
+out
+public/generated
+.DS_Store
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
