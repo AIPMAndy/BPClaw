@@ -1,9 +1,9 @@
 ---
-name: dynamic-showcase-web-skill
+name: liveppt-skill
 description: Build click-through cinematic web showcase pages with dynamic transitions and runtime style switching. Use when users ask for PPT alternatives, interactive launch pages, or high-end storytelling websites with multiple visual styles.
 ---
 
-# Dynamic Showcase Web Skill
+# LivePPT Skill
 
 ## Overview
 
